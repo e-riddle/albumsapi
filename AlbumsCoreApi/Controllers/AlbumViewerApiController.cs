@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AlbumsCoreApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -44,13 +45,15 @@ namespace AlbumsCoreApi
         }
 
 
+      
+
         [HttpGet("api/artists")]
-        public List<Artist> GetArtists()
+        public async Task<List<Artist>> GetArtists()
         {
-            return Context.Artists
+            return await Context.Artists
                     .OrderBy(x => x.ArtistName)
-                    .ToList();
-                    //.ToListAsync();
+                    .ToListAsync();
+            
 
         }
 
