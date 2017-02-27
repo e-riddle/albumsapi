@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using AlbumsCoreApi.Models;
+//using AlbumsCoreApi.Models;
+using Album.DataAccess.EF.Models;
+using Album.DataAccess.EF.Repository;
 
 namespace AlbumsCoreApi
 {
@@ -29,13 +31,15 @@ namespace AlbumsCoreApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AlbumViewerContext>( builder =>
-                    {
-                        var connStr = Configuration["Data:SqlServerConnectionString"];
-                        builder.UseSqlServer(connStr);
-                    }
+            services.AddDbContext<AlbumViewerContext>(builder =>
+                   {
+                       var connStr = Configuration["Data:SqlServerConnectionString"];
+                       builder.UseSqlServer(connStr);
+                   }
             );
 
+
+            services.AddTransient<ArtistRepository>();
 
 
             // Add framework services.

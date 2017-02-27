@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AlbumsCoreApi.Models
+namespace Album.DataAccess.EF.Models
 {
     public class Album
     {

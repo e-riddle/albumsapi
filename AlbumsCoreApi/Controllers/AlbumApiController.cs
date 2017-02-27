@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AlbumsCoreApi.Models;
-using Microsoft.EntityFrameworkCore;
+//using AlbumsCoreApi.Models;
+//using Microsoft.EntityFrameworkCore;
+using Album.DataAccess.EF.Repository;
+using Album.DataAccess.EF.Models;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,15 +14,23 @@ using Microsoft.EntityFrameworkCore;
 namespace AlbumsCoreApi
 {
     //[Route("api/[controller]")]
-    public class AlbumViewerApiController : Controller
+    public class AlbumApiController : Controller
     {
 
         AlbumViewerContext Context;
 
-        public AlbumViewerApiController(AlbumViewerContext context)
+        ArtistRepository ArtistRepository;
+
+        public AlbumApiController(AlbumViewerContext context, ArtistRepository artistRepository)
         {
             this.Context = context;
+
+            this.ArtistRepository = artistRepository;
         }
+
+
+     
+
 
         // GET: api/values
         [HttpGet]
@@ -50,9 +60,15 @@ namespace AlbumsCoreApi
         [HttpGet("api/artists")]
         public async Task<List<Artist>> GetArtists()
         {
-            return await Context.Artists
-                    .OrderBy(x => x.ArtistName)
-                    .ToListAsync();
+
+            return await this.ArtistRepository.GetArtists();
+
+            //return artists.Result;
+
+
+            //return await Context.Artists
+            //        .OrderBy(x => x.ArtistName)
+            //        .ToListAsync();
             
 
         }
