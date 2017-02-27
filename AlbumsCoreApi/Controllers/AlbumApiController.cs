@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-//using AlbumsCoreApi.Models;
-//using Microsoft.EntityFrameworkCore;
 using Album.DataAccess.EF.Repository;
 using Album.DataAccess.EF.Models;
 
@@ -62,9 +60,6 @@ namespace AlbumsCoreApi
         {
 
             return await this.ArtistRepository.GetArtists();
-
-            //return artists.Result;
-
 
             //return await Context.Artists
             //        .OrderBy(x => x.ArtistName)
