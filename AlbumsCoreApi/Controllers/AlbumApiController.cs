@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Album.DataAccess.EF.Repository;
 using Album.DataAccess.EF.Models;
+using Microsoft.Extensions.Logging;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,15 +16,21 @@ namespace AlbumsCoreApi
     public class AlbumApiController : Controller
     {
 
-        AlbumViewerContext Context;
+        private readonly AlbumViewerContext _context;
 
-        ArtistRepository ArtistRepository;
+        private readonly ArtistRepository _artistRepository;
 
-        public AlbumApiController(AlbumViewerContext context, ArtistRepository artistRepository)
+        private readonly ILogger _logger;
+
+
+
+        public AlbumApiController(AlbumViewerContext context, ArtistRepository artistRepository, ILogger<AlbumApiController> logger)
         {
-            this.Context = context;
+            this._context = context;
 
-            this.ArtistRepository = artistRepository;
+            this._artistRepository = artistRepository;
+
+            this._logger = logger;
         }
 
 
@@ -59,7 +66,10 @@ namespace AlbumsCoreApi
         public async Task<List<Artist>> GetArtists()
         {
 
-            return await this.ArtistRepository.GetArtists();
+
+            this._logger.LogInformation("Getting artists...");
+
+            return await this._artistRepository.GetArtists();
 
             //return await Context.Artists
             //        .OrderBy(x => x.ArtistName)
