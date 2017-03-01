@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Album.DataAccess.EF.Models;
 using Album.DataAccess.EF.Repository;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace AlbumsCoreApi
 {
@@ -59,6 +60,12 @@ namespace AlbumsCoreApi
                     Contact = new Contact { Name = "eriddle", Email = "eriddle@seic.com" },
                     License = new License { Name = "Use under LICX", Url = "http://url.com" }
                 });
+
+                //Set the comments path for the swagger json and ui.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = System.IO.Path.Combine(basePath, "AlbumApi.xml");
+                c.IncludeXmlComments(xmlPath);
+
             });
 
 

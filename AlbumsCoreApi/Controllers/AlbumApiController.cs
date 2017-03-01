@@ -61,7 +61,10 @@ namespace AlbumsCoreApi
 
 
       
-
+        /// <summary>
+        /// Get me a list of artists
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("api/artists")]
         public async Task<List<Artist>> GetArtists()
         {
