@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 //using AlbumsCoreApi.Models;
 using Album.DataAccess.EF.Models;
 using Album.DataAccess.EF.Repository;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace AlbumsCoreApi
 {
@@ -41,9 +42,26 @@ namespace AlbumsCoreApi
 
             services.AddTransient<ArtistRepository>();
 
-
+            
             // Add framework services.
             services.AddMvc();
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Album API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = "None",
+                    Contact = new Contact { Name = "eriddle", Email = "eriddle@seic.com" },
+                    License = new License { Name = "Use under LICX", Url = "http://url.com" }
+                });
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +79,16 @@ namespace AlbumsCoreApi
             var startupLogger = loggerFactory.CreateLogger<Startup>();
 
             app.UseMvc();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUi(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
 
             startupLogger.LogInformation("Application startup is complete");
         }

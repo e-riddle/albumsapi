@@ -37,27 +37,27 @@ namespace AlbumsCoreApi
      
 
 
-        // GET: api/values
-        [HttpGet]
-        [Route("api/helloworld")]
-        public object HelloWorld(string name = null)
-        {
-            if (string.IsNullOrEmpty(name))
-                name = "Johnny Doe";
+        //// GET: api/values
+        //[HttpGet]
+        //[Route("api/helloworld")]
+        //public object HelloWorld(string name = null)
+        //{
+        //    if (string.IsNullOrEmpty(name))
+        //        name = "Johnny Doe";
 
 
-            return new
-            {
-                message = $"Hello world {name}",
-                time = DateTime.UtcNow
-            };
-        }
-        // GET api/values/5
-        [HttpGet("api/helloworld/{id}")]
-        public string Get(int id)
-        {
-            return "hello world";
-        }
+        //    return new
+        //    {
+        //        message = $"Hello world {name}",
+        //        time = DateTime.UtcNow
+        //    };
+        //}
+        //// GET api/values/5
+        //[HttpGet("api/helloworld/{id}")]
+        //public string Get(int id)
+        //{
+        //    return "hello world";
+        //}
 
 
       
@@ -77,22 +77,22 @@ namespace AlbumsCoreApi
         }
 
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST api/values
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
