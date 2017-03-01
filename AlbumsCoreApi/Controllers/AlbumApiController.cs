@@ -71,9 +71,7 @@ namespace AlbumsCoreApi
 
             return await this._artistRepository.GetArtists();
 
-            //return await Context.Artists
-            //        .OrderBy(x => x.ArtistName)
-            //        .ToListAsync();
+            
             
 
         }
