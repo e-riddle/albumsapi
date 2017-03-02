@@ -25,6 +25,15 @@ namespace AlbumsCoreApi
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
+
+            if (env.IsDevelopment())
+            {
+                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
+                builder.AddUserSecrets();
+            }
+
+
             Configuration = builder.Build();
         }
 
@@ -77,6 +86,8 @@ namespace AlbumsCoreApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                
             }
             
 
