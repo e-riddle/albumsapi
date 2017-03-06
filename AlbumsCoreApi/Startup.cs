@@ -13,6 +13,7 @@ using Album.DataAccess.EF.Models;
 using Album.DataAccess.EF.Repository;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace AlbumsCoreApi
 {
@@ -50,7 +51,8 @@ namespace AlbumsCoreApi
             );
 
 
-            services.AddTransient<ArtistRepository>();
+            services.TryAddTransient<ArtistRepository>();
+
 
             
             // Add framework services.
